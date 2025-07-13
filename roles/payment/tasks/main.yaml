@@ -1,0 +1,12 @@
+- name: app-setup
+  include_role:
+    name: common
+    tasks_from: app-setup.yaml
+- name: install the dependencies
+  include_role: 
+    name: common
+    tasks_from: python-setup.yaml
+- name: start the payment service
+  include_role:
+    name: common
+    tasks_from: systemd.yaml
