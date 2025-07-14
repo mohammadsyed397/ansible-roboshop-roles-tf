@@ -1,3 +1,17 @@
+- name: app setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: nodejs setup
+  include_role:
+    name: common
+    tasks_from: nodejs
+
+- name: copy mongodb repo
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
 
 - name: install mongodb client
   ansible.builtin.dnf:
@@ -26,3 +40,10 @@
   include_role:
     name: common
     tasks_from: systemd.yaml
+
+# - name: Deployment
+#   tags: 
+#   - deployment
+#   import_role:
+#     name: common
+#     tasks_from: deployment
